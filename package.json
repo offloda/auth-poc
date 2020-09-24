@@ -1,0 +1,35 @@
+{
+  "name": "auth-poc",
+  "version": "1.0.0",
+  "description": "a simple REST api with test",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src -d build",
+    "start": "node build/index.js",
+    "test": "jest --detectOpenHandles --watchAll --coverage=true",
+    "dev": "nodemon src/index.js --exec babel-node"
+  },
+  "author": "Adolfo Lagos",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.1.1",
+    "jest": "^26.4.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.5",
+    "morgan": "^1.10.0",
+    "supertest": "^4.0.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.5",
+    "babel-jest": "^26.3.0",
+    "nodemon": "^2.0.4",
+    "regenerator-runtime": "^0.13.7"
+  }
+}
