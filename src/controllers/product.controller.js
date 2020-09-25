@@ -50,7 +50,7 @@ export const getProductById = async (req, res) => {
 export const updateProductById = async (req, res) => {
   try {
     const { productId } = req.params
-    const { price } = req.params
+    const { price } = req.body
     const productUpdated = await Product.update({ _id: productId }, { price: price })
     if(productUpdated.nModified > 0) {
       return res.status(200).json({

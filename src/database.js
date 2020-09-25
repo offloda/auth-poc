@@ -17,7 +17,8 @@ mongoose.connect(`mongodb://${host}:${port}/${name}`, {
   pass: pass,
   useCreateIndex: true,
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useFindAndModify: true,
 })
   .then(db => console.log('DB is connected'))
   .catch(err => console.log(err))
