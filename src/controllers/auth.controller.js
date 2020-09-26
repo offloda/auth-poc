@@ -14,8 +14,6 @@ export const singUp = async (req, res) => {
       email,
       password: await User.encryptPassword(password)
     })
-    const foundUser = await findUser({username, email})
-    if (foundUser.length > 0) return res.status(401).json({ data: foundUser, message: "Can't register User" })
     if (roles) {
       const foundRoles = await Role.find({ name: { $in: roles } })
       newUser.roles = foundRoles.map(values => values._id)
@@ -30,7 +28,6 @@ export const singUp = async (req, res) => {
 
     res.status(200).json({ token })
   } catch (error) {
-    console.log(error)
     res.status(500).json({
       status: false,
       msg: "Can't singUp"
@@ -50,25 +47,9 @@ export const singIn = async (req, res) => {
 
     res.json({ token })
   } catch (error) {
-    console.log(error)
     res.status(500).json({
       status: false,
       msg: "Can't singIn"
     })
   }
-}
-
-const findUser = async (data) => {
-  const foundUserByEmail = await User.findOne({ email: data.email })
-  const foundUserByUsername = await User.findOne({ username: data.username })
-
-  if (foundUserByEmail || foundUserByUsername) {
-    return foundUserByEmail && foundUserByUsername
-      ? ['email', 'user']
-      : foundUserByEmail
-        ? ['email']
-        : ['user']
-  }
-
-  return []
 }
